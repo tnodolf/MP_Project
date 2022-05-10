@@ -4,7 +4,7 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
-
+font = cv2.FONT_HERSHEY_SIMPLEX
 
 """
 # For static images:
@@ -123,6 +123,9 @@ with mp_hands.Hands(
 
         thumb_ip_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y
         thumb_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP].y
+
+        image = cv2.flip(image, 1)
+
         if(
             ((index_mcp_y < wrist_y) and (index_mcp_y < thumb_cmc_y)) and
             ((middle_mcp_y < wrist_y) and (middle_mcp_y < thumb_cmc_y)) and
@@ -134,29 +137,47 @@ with mp_hands.Hands(
                 (index_tip_y < index_base_y) and
                 (middle_tip_y < middle_base_y) and
                 (pinky_tip_y < pinky_base_y)
-            ):
-                print("Japi I gotchu")
+            ): # At the request of Japi
+              cv2.putText(image, "Japi I gotchu", (50, 50), font, 1, (255, 0, 255), 3)
+              print("Japi I gotchu")
             elif(
                 (index_tip_y < index_base_y) and
-                (middle_tip_y < middle_base_y)
+                (middle_tip_y < middle_base_y) and
                 (ring_tip_y > ring_base_y) and 
                 (pinky_tip_y > pinky_base_y)
-            ):
-                print("PUT EM UP")
+            ): # Finger Gun
+              cv2.putText(image, "PUT EM UP", (50, 50), font, 1, (255, 0, 255), 3)
+              print("PUT EM UP")
+            
+            elif(
+                (index_tip_y > index_base_y) and
+                (middle_tip_y < middle_base_y) and
+                (ring_tip_y > ring_base_y) and 
+                (pinky_tip_y > pinky_base_y)
+            ): # Middle Finger
+              cv2.putText(image, "Flippin the bird", (50, 50), font, 1, (255, 0, 255), 3)
+              print("Flippin the bird")
+
             else:
-                print("Hand Up")
+              cv2.putText(image, "Hand Up", (50, 50), font, 1, (255, 0, 255), 3)
+              print("Hand Up")
         elif(
             ((index_mcp_y  > wrist_y) and (index_mcp_y  > thumb_cmc_y)) and
             ((middle_mcp_y > wrist_y) and (middle_mcp_y > thumb_cmc_y)) and
             ((ring_mcp_y   > wrist_y) and (ring_mcp_y   > thumb_cmc_y)) and
             ((pinky_mcp_y  > wrist_y) and (pinky_mcp_y  > thumb_cmc_y)) 
-        ): # Hand Mid
-            print("Hand Down")
-        else:
-            print("Hand Mid")
-        
+        ): # Hand Down
+          cv2.putText(image, "Hand Down", (50, 50), font, 1, (255, 0, 255), 3)
+          print("Hand Down")
+        else: # Hand Mid
+          cv2.putText(image, "Hand Mid", (50, 50), font, 1, (255, 0, 255), 3)
+          print("Hand Mid")
+    else: # If no hand is detected
+      image = cv2.flip(image, 1)
+      cv2.putText(image, "Nada", (50, 50), font, 1, (255, 0, 255), 3)
+    
     # Flip the image horizontally for a selfie-view display.
-    cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
+    cv2.imshow('MediaPipe Hands', image)
     if cv2.waitKey(5) & 0xFF == 27:
       break
 cap.release()
