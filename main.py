@@ -89,71 +89,71 @@ with mp_hands.Hands(
         thumb_cmc_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].y
         thumb_cmc_x = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].x
 
-        index_tip_y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-        index_mid_y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_DIP].y
+        index_tip_y  = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+        index_mid_y  = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_DIP].y
         index_base_y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y
         index_base_x = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].x
-        index_mcp_x = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP].x
-        index_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+        index_mcp_x  = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP].x
+        index_mcp_y  = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP].y
 
-        middle_tip_y = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP].y
-        middle_mid_y = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_DIP].y
+        middle_tip_y  = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP].y
+        middle_mid_y  = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_DIP].y
         middle_base_y = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_PIP].y
         middle_base_x = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_PIP].x
-        middle_mcp_x = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
-        middle_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
+        middle_mcp_x  = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
+        middle_mcp_y  = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
 
-        ring_tip_y = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].y
-        ring_tip_x = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].x
-        ring_mid_y = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_DIP].y
-        ring_mid_x = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_DIP].x
+        ring_tip_y  = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].y
+        ring_tip_x  = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].x
+        ring_mid_y  = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_DIP].y
+        ring_mid_x  = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_DIP].x
         ring_base_y = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_PIP].y
         ring_base_x = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_PIP].x
-        ring_mcp_x = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_MCP].x
-        ring_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_MCP].y
+        ring_mcp_x  = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_MCP].x
+        ring_mcp_y  = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_MCP].y
 
-        pinky_tip_y = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].y
-        pinky_tip_x = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].x
-        pinky_mid_y = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP].y
-        pinky_mid_x = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP].x
+        pinky_tip_y  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].y
+        pinky_tip_x  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].x
+        pinky_mid_y  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP].y
+        pinky_mid_x  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP].x
         pinky_base_y = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_PIP].y
         pinky_base_x = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_PIP].x
-        pinky_mcp_x = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP].x
-        pinky_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP].y
+        pinky_mcp_x  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP].x
+        pinky_mcp_y  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP].y
 
-        thumb_ip_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y
+        thumb_ip_y  = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y
         thumb_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP].y
 
         image = cv2.flip(image, 1)
 
         if(
-            ((index_mcp_y < wrist_y) and (index_mcp_y < thumb_cmc_y)) and
+            ((index_mcp_y  < wrist_y) and (index_mcp_y  < thumb_cmc_y)) and
             ((middle_mcp_y < wrist_y) and (middle_mcp_y < thumb_cmc_y)) and
-            ((ring_mcp_y < wrist_y) and (ring_mcp_y < thumb_cmc_y)) and
-            ((pinky_mcp_y < wrist_y) and (pinky_mcp_y < thumb_cmc_y))    
+            ((ring_mcp_y   < wrist_y) and (ring_mcp_y   < thumb_cmc_y)) and
+            ((pinky_mcp_y  < wrist_y) and (pinky_mcp_y  < thumb_cmc_y))    
         ): # Hand up
             if(
-                (ring_tip_y > ring_base_y) and 
-                (index_tip_y < index_base_y) and
+                (ring_tip_y   > ring_base_y  ) and 
+                (index_tip_y  < index_base_y ) and
                 (middle_tip_y < middle_base_y) and
-                (pinky_tip_y < pinky_base_y)
+                (pinky_tip_y  < pinky_base_y )
             ): # At the request of Japi
               cv2.putText(image, "Japi I gotchu", (50, 50), font, 1, (255, 0, 255), 3)
               print("Japi I gotchu")
             elif(
-                (index_tip_y < index_base_y) and
+                (index_tip_y  < index_base_y ) and
                 (middle_tip_y < middle_base_y) and
-                (ring_tip_y > ring_base_y) and 
-                (pinky_tip_y > pinky_base_y)
+                (ring_tip_y   > ring_base_y  ) and 
+                (pinky_tip_y  > pinky_base_y )
             ): # Finger Gun
               cv2.putText(image, "PUT EM UP", (50, 50), font, 1, (255, 0, 255), 3)
               print("PUT EM UP")
             
             elif(
-                (index_tip_y > index_base_y) and
+                (index_tip_y  > index_base_y ) and
                 (middle_tip_y < middle_base_y) and
-                (ring_tip_y > ring_base_y) and 
-                (pinky_tip_y > pinky_base_y)
+                (ring_tip_y   > ring_base_y  ) and 
+                (pinky_tip_y  > pinky_base_y )
             ): # Middle Finger
               cv2.putText(image, "Flippin the bird", (50, 50), font, 1, (255, 0, 255), 3)
               print("Flippin the bird")
