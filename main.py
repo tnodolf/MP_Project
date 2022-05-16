@@ -51,7 +51,7 @@ with mp_hands.Hands(
 # For webcam input:
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
-    model_complexity=0,
+    model_complexity=1,
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5) as hands:
   while cap.isOpened():
@@ -121,6 +121,7 @@ with mp_hands.Hands(
         pinky_mcp_x  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP].x
         pinky_mcp_y  = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP].y
 
+        thumb_tip_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].y
         thumb_ip_y  = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y
         thumb_mcp_y = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP].y
 
@@ -133,13 +134,23 @@ with mp_hands.Hands(
             ((pinky_mcp_y  < wrist_y) and (pinky_mcp_y  < thumb_cmc_y))    
         ): # Hand up
             if(
-                (ring_tip_y   > ring_base_y  ) and 
-                (index_tip_y  < index_base_y ) and
-                (middle_tip_y < middle_base_y) and
-                (pinky_tip_y  < pinky_base_y )
-            ): # At the request of Japi
-              cv2.putText(image, "Japi I gotchu", (50, 50), font, 1, (255, 0, 255), 3)
-              print("Japi I gotchu")
+              (middle_tip_y > middle_base_y) and
+              (ring_tip_y   > ring_base_y  ) and 
+              (pinky_tip_y  > pinky_base_y ) and
+              (index_base_y < index_mid_y  ) and
+              (index_mid_y  < index_tip_y  ) and 
+              (thumb_tip_y < thumb_mcp_y)
+            ):
+              cv2.putText(image, "Crip Sign", (50, 50), font, 1, (255, 0, 0), 3)
+              print("Crip Sign")
+#            elif(
+#                (ring_tip_y   > ring_base_y  ) and 
+#                (index_tip_y  < index_base_y ) and
+#                (middle_tip_y < middle_base_y) and
+#                (pinky_tip_y  < pinky_base_y )
+#            ): # At the request of Japi
+#              cv2.putText(image, "Japi I gotchu", (50, 50), font, 1, (255, 0, 255), 3)
+#              print("Japi I gotchu")
             elif(
                 (index_tip_y  < index_base_y ) and
                 (middle_tip_y < middle_base_y) and
